@@ -47,9 +47,13 @@ package com.hqxu.design.innerClass;
  * 5.内部类 —— 非静态内部类 —— 局部内部类
  *    1）指内部类定义在方法体内，只能在该方法或条件的作用域内才能使用，退出这写作用域就无法引用。
  *    2）作为非静态内部类的一种特殊形式, 非静态内部类的所有限制对局部类同样成立。
- *       局部类不仅可以访问外部类的所有成员，还可以访问方法体的局部变量，但必须是final修饰的局部变量。 
+ *    3）局部类不仅可以访问外部类的所有成员，还可以访问方法体的局部变量，但必须是final修饰的局部变量。？？？ 
+ *       
+ *       解析：Java采用了一种copy local variable的方法实现，定义为final的变量，会拷贝一份存到局部内部类中，
+ *            后续使用持续维护这个对象在生命周期内，所以可以继续访问。　？？？　　（jdk8 不需要final修饰，另外，方法体外部也无法将Object转为内部类）
  *  
- *  
+ * 6. 内部类 —— 非静态内部类 —— 匿名内部类
+ *    1）一般用于创建 子类实例 或者实现类实例，但是不想在代码里面创建一个子类或者实现类文件。
  *  
  *  
  */
@@ -59,7 +63,28 @@ public class OuterClass {
     private Integer a = 1;
     private static final String s = "1";
     
-    // 测试内部类
+    
+    /**
+     * 非静态内部类 —— 局部内部类
+     */
+    private Object OutterF() {
+        
+        // 局部变量 （jdk 8 不需要 final修饰）
+        int localVariable = 22;
+        
+        class LocalInner{
+            void println(){
+                System.out.println("localVariable " + localVariable);
+            }
+        }
+        
+        Object in = new LocalInner();
+        return in;
+    }
+    
+    
+    // start
+    // 0.测试内部类
     public static void main(String[] args) {
         
         // 1. 同一个类中， 测试 内部类的访问权限
@@ -82,6 +107,35 @@ public class OuterClass {
         OuterClass outerCls = new OuterClass();
         OuterClass.PrivateInnerCls iCls = outerCls.new PrivateInnerCls();   // 实例化成员内部类
         System.out.println(iCls.is);
+        
+        
+        
+        // 4.测试 非静态内部类 - 局部内部类
+        Object localInner = new OuterClass().OutterF(); // 不在作用域内，类型不能转为为 LocalInner
+        
+        
+        // 5.测试匿名内部类
+            // 相当于
+            // Thread t = new myThread();
+            // t.start();
+            // 不需要创建一个继承Thread 的 myThread 类
+        new Thread(){
+            @Override
+            public void run() {
+                System.out.println(Thread.currentThread().getName());
+            }
+        }.start();
+        
+            // 相当于 
+            // Runnable r = new myRunnable();
+            // new Thread(r).start();
+            // 不需要创建 一个实现Runnable的 myRunnable 类
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                System.out.println(Thread.currentThread().getName());
+            }
+        }).start();
         
     }
     
@@ -139,8 +193,6 @@ public class OuterClass {
         // 2) 可以直接访问外部类所有成员
         private String is = s;
         private int ii = a;
-        
-        
     }
     
 }
