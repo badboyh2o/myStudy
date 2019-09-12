@@ -37,7 +37,9 @@ package com.hqxu.design.innerClass;
  *  
  * 3. 内部类 —— 静态内部类
  *  3.1 实例化方式： OuterClass.StaticInerCls staticInerCls = new OuterClass.StaticInerCls();  
- * 
+ *  3.2 静态内部类的加载时机:
+ *         当实例化静态内部类或者访问静态内部类的静态成员时，静态内部类被加载。
+ *      
  * 
  * 4. 内部类 —— 非静态内部类 —— 成员内部类
  *    1) 非静态内部类不能出现静态成员。
@@ -62,6 +64,11 @@ public class OuterClass {
     
     private Integer a = 1;
     private static final String s = "1";
+    
+    static {
+        System.out.println("Outer class load");
+    }
+    
     
     
     /**
@@ -92,6 +99,7 @@ public class OuterClass {
         OuterClass.PrivateStaticInnerCls inner1 = new OuterClass.PrivateStaticInnerCls();
         OuterClass.DefaultStaticInnerCls inner2 = new OuterClass.DefaultStaticInnerCls();
         OuterClass.ProtectedStaticInnerCls inner3 = new OuterClass.ProtectedStaticInnerCls();
+        System.out.println("--------------------------------------------------------");
         OuterClass.PublicStaticInnerClass inner4 = new OuterClass.PublicStaticInnerClass();
         
         // 2. 测试静态内部类
@@ -167,6 +175,11 @@ public class OuterClass {
         // 1) 直接访问 外部类 静态成员
         private String is = s;
         private static int ii = 2; 
+        
+        static {
+            
+            System.out.println("static inner class load");
+        }
         
         public void publicF() {
             // 2) 静态内部类 只能通过 实例化外部类，访问非静态成员
