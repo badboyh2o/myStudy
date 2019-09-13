@@ -1,14 +1,13 @@
-package com.hqxu.Class.IOstream;
+package com.hqxu.Class.IO;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 import org.springframework.core.io.ClassPathResource;
 
@@ -30,6 +29,9 @@ public class WriterOrReader {
         
         // 1.测试 BufferedReader
         testBufferedReader();
+        
+        // 2.测试 printWriter
+        testPrintWriter();
         
     }
     
@@ -84,6 +86,32 @@ public class WriterOrReader {
                 }
             }
         }
+    }
+    
+    
+    /**
+     * 2.测试 PrintWriter
+     */
+    public static void testPrintWriter() {
+        
+        PrintWriter pw = null;
+        // 不能输出到resources, 这里测试
+        try {
+            pw = new PrintWriter("src/main/resources/io/printwriter.txt");
+            
+            pw.write("hello world");
+            
+        } catch (FileNotFoundException e) {
+            System.out.println("fiel not found");
+        } finally {
+            
+            if(pw != null) {
+                pw.close();
+            }
+        }
+        
+        
+        
     }
     
 }

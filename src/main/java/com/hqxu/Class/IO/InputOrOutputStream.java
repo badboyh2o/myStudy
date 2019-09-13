@@ -1,4 +1,4 @@
-package com.hqxu.Class.IOstream;
+package com.hqxu.Class.IO;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -24,12 +24,35 @@ import java.io.UnsupportedEncodingException;
 /**
  * 
  * 一、IO基本概念
- *  1.Input,读入：指字节从其他终端(磁盘、JVM内存、其他应用) ————> 到当前应用的JVM;
- *    Output,写：  指字节从当前应用的JVM ————> 其他终端(磁盘、其他应用、JVM内存).
+ * 
+ *  深入分析 Java I/O 的工作机制
+ *  https://www.ibm.com/developerworks/cn/java/j-lo-javaio/index.html
+ *  Java IO
+ *  https://blog.csdn.net/suifeng3051/article/details/48344587
  *  
- *  2.流：可以理解为字节在两个端点之间传输形成字节流。流使用完后应该关闭。
- *    输入流：读入到JVM的流;
- *    输出流：从JVM输出到其他终端的流。
+ *  不同IO模型的实现方式：缓存IO、直接IO、内存映射
+ *  https://blog.csdn.net/pakko/article/details/8779110
+ *  不同IO模型的实现方式
+ *  https://blog.csdn.net/weixin_39446980/article/details/85235537
+ *  不同IO模型的实现方式 
+ *  https://www.cnblogs.com/hapjin/p/5736188.html
+ *      
+ *      
+ *      数据源(一切皆文件)：
+ *          文件(File、RandomAccessFile)   磁盘IO
+ *          网络(Socket)   网络IO
+ *          控制台
+ *  
+ *  
+ * 
+ * 
+ *  1.Input,读入：指字节从数据源(磁盘文件、socket、JVM内存、其他应用) ——(内核空间[页缓存])——> 到当前应用的JVM[用户空间];
+ *    Output,写出：  指字节从当前应用的JVM[用户空间] ——(内核空间[页缓存])——> 数据源(磁盘文件、socket、其他应用、JVM内存).
+ *  
+ *  
+ *  2.流：可以理解为字节在物理数据源和JVM之间传输形成字节流。流使用完后应该关闭。
+ *    输入流：从物理数据源读入到JVM的数据流;
+ *    输出流：从JVM输出到物理数据源的数据流。
  *    
  *  
  *  3.流的基本单元
@@ -98,7 +121,10 @@ import java.io.UnsupportedEncodingException;
  * 
  * 
  *   
- * 二、缓冲流
+ * 二、高级流
+ * 
+ * 2.1 缓冲流
+ * 
  *  BufferedInputStream
  *  BufferedOutputStream
  *  BufferedReader
@@ -118,7 +144,7 @@ import java.io.UnsupportedEncodingException;
  *      
  *   
  *   
- * 三、转换流  
+ * 2.2 转换流  
  *  InputStreamReader     将 InputStream 转为 BufferedReader
  *  OutputStreamWriter    将 OutputStream 转为 BufferedWriter
  *  
@@ -130,7 +156,7 @@ import java.io.UnsupportedEncodingException;
  *  
  *   
  *   
- * 四、IO使用注意事项
+ * 三、IO使用注意事项
  * 
  *   1.使用完毕应该关闭流
  *      保证流占用的物理资源被回收；
@@ -143,14 +169,20 @@ import java.io.UnsupportedEncodingException;
  *   4.尽可能的多使用处理流，这会代码更加灵活，复用性更好。
  * 
  * 
- * 五、传统IO的特点
+ * 四、传统IO的特点
+ * 
+ *  
+ * 
  *  1.输入/输出都是同步、阻塞的;
  *       同步：read() 、 write() 方法都是同步I/O,每一次调用都可以知道（操作系统的？）IO结果；
- *       阻塞：读/写不到(一个字节)数据，就挂起当前线程。
+ *       阻塞：读/写不到(一个字节)数据，就挂起当前线程？直至有可供读取的数据或者可以写入数据
  *  2.效率低; 通过字节的移动来处理的（即使我们不直接处理字节流，但底层实现还是依赖于字节处理）。
  *  
  *  
- * 六、NIO
+ * 五、NIO
+ * 
+ *      https://www.ibm.com/developerworks/cn/education/java/j-nio/j-nio.html NIO入门
+ * 
  *  1.特点：
  *      同步、非阻塞
  *  2.
@@ -186,7 +218,6 @@ public class InputOrOutputStream implements Serializable {
 		testInputStreamReader();
 		
 	}
-	
 	
 	
 	
