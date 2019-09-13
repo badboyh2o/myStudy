@@ -106,7 +106,7 @@ import java.io.UnsupportedEncodingException;
  * 
  *  1.BufferedReader
  *   1）public String readLine() throws IOException {}
- *      读入一行
+ *      读入一行；如果到达结尾，返回 null
  *      
  *  2.BufferedWriter
  *   1）public void write(String s, int off, int len) throws IOException {
