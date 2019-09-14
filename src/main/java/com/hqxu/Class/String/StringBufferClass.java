@@ -1,4 +1,4 @@
-package com.hqxu.Class.StringClass;
+package com.hqxu.Class.String;
 
 
 /**
