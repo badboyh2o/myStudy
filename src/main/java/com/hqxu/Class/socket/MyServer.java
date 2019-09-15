@@ -19,12 +19,11 @@ public class MyServer {
 	
 	public static void main(String[] args) throws IOException {
 	    
+	    // 服务端socket
 		ServerSocket server =new ServerSocket(20000);
 		
-		// 一直监听客户端连接
 		while(true){
-		    
-			// 阻塞，直到有客户端连接
+			// 一直监听客户端连接。 阻塞，直到有客户端连接
 			Socket socket=server.accept(); //对应客户端的socket
 			clientSockets.add(socket);
 			// 一个连接启动一个线程

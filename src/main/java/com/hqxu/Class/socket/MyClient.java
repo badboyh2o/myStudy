@@ -20,7 +20,7 @@ public class MyClient {
 	
 	public static void main(String[] args) throws UnknownHostException, IOException {
 	    
-	    
+	    // 连接到服务端
 		Socket socket=new Socket("127.0.0.1", 20000);
 		
 		// 1.收消息  
@@ -31,12 +31,12 @@ public class MyClient {
 		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
 		String message=null;
 		PrintWriter pw=new PrintWriter(new OutputStreamWriter(socket.getOutputStream()),true);
-		// readLine() 会阻塞，知道有一行消息输入
+		// readLine() 会导致线程阻塞，直到有一行消息输入
 		while((message=br.readLine())!=null){
 			// 写socket
 			pw.println(message);
 		}
-		
+		// 不需要关闭流
 	}
 	
 }
