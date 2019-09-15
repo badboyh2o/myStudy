@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 
 /**
  * 匿名内部类 和 lambda表达式同时使用
- *
+ * 
  */
 public class LambdaScope {
 

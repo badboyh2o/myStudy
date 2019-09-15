@@ -10,12 +10,16 @@ package com.hqxu.Class.FunctionalInterface;
  *          注意：可以继承 Object类中的 public 非final 方法。？？？？？ //TODO
  *          
  *      2)接口使用 @FunctionalInterface 注解;
+ *          如果仅有一个抽象方法，不使用 @FunctionalInterface 注解 ，编译器依旧认为这是一个函数式接口。
  *  
  * 
  *  1.2 default 方法
+ *  
  *      1）实现类会继承接口中的default方法；
+ *      
  *      2）如果一个类同时实现接口A和B，接口A和B中有相同的default方法，这时，该类必须重写接口中的default方法
  *          因为，类在继承接口中的default方法时，不知道应该继承哪一个接口中的default方法。
+ *          
  *      3） 如果子类继承父类，父类中有b方法，该子类同时实现的接口中也有b方法（被default修饰），
  *          那么子类会继承父类的b方法而不是继承接口中的b方法
  * 
@@ -38,6 +42,8 @@ package com.hqxu.Class.FunctionalInterface;
  *          {}如果有返回值，则必须使用 return
  *           
  *      2） (T a,..) -> 一个表达式
+ *          如果参数使用类型推断， a -> 表达式
+ *          如： a -> System.out.println(i)
  *      
  *      3）方法引用
  *      
@@ -55,7 +61,7 @@ package com.hqxu.Class.FunctionalInterface;
 
             @Test
             public void test() {
-                MyLoves love = String::compareTo;
+                MyLoves love = String::compareTo; //基于参数实例方法引用
             }
  *  
  *  
