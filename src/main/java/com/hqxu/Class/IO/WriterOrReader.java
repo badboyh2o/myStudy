@@ -1,4 +1,4 @@
-package com.hqxu.Class.IO;
+package com.hqxu.Class.io;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

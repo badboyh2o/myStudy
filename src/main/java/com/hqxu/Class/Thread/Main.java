@@ -44,5 +44,7 @@ package com.hqxu.Class.Thread;
  *
  */
 public class Main {
+    
+    
 
 }
