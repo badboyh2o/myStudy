@@ -53,7 +53,7 @@ public class NIOServer {
         // 6.死循环等待新的连接
         while(true) {
             // !! 获取可用的channel数量
-            int readyChannels = selector.select(); //阻塞等待事件发生
+            int readyChannels = selector.select(); //阻塞等待,检测channel就绪情况--- 空轮询 cpu 100%
             // !!
             if(readyChannels == 0) continue;
             
