@@ -11,7 +11,8 @@ import com.thoughtworks.xstream.XStream;
 /**
  * xstream 
  * 1. null 值属性不输出！
- * 2. 注意属性定义的类型和setter设置的属性类型一致
+ * 2. 8种基本类型属性总会输出
+ * 3. 注意属性定义的类型和setter设置的属性类型一致
  */
 public class XstreamUtil {
 
