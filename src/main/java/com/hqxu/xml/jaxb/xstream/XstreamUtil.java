@@ -17,6 +17,8 @@ import com.thoughtworks.xstream.XStream;
 public class XstreamUtil {
 
     public static void main(String[] args) {
+        System.out.println(String.format("%.2f",0.1415926));
+        
         // 实例化
         XStream xstream = new XStream();
         //XStream xstream = new XStream(new StaxDriver()); //不换行，适合网络传输
