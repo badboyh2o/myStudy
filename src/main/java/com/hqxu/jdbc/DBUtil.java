@@ -79,7 +79,6 @@ public class DBUtil {
 		Connection conn=getConnection();
 		System.out.println(conn==null); //false 连接成功
 		close(null,null,null);
-
 	}
 
 }
