@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+<head>
+	<filed name="1">123</filed>
+	<filed name="2">456</filed>
+	<filed name="3">789</filed>
+</head>
+<body>
+	<users name="1">
+		<user id="1">
+			<name>张三</name>
+			<age>18</age>
+		</user>
+		<user id="2">
+			<name>张三</name>
+			<age>18</age>
+		</user>
+	</users>
+	<users name="2">
+		<user id="1">
+			<name>张三</name>
+			<age>18</age>
+		</user>
+		<user id="2">
+			<name>张三</name>
+			<age>18</age>
+		</user>
+	</users>
+</body>  
+</root>
