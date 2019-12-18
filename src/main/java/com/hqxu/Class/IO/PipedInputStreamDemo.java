@@ -1,4 +1,4 @@
-package com.hqxu.Class.io;
+package com.hqxu.Class.IO;
 
 import java.io.IOException;
 import java.io.PipedInputStream;

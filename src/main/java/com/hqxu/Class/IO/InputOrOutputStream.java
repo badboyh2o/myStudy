@@ -1,4 +1,4 @@
-package com.hqxu.Class.io;
+package com.hqxu.Class.IO;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
