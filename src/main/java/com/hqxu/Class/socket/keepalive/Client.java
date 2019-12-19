@@ -1,4 +1,4 @@
-package com.hqxu.Class.socketTest;
+package com.hqxu.Class.socket.keepalive;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,20 +9,20 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 /**
- * 1.接收服务端转发的其他客户端的消息
- * 2.发送消息给服务端
- *
+ * 开启一个线程，与服务端建立长连接
  */
 public class Client {
 
     public static void main(String[] args) throws UnknownHostException, IOException {
         
         // 与服务端简历连接
-        Socket socket = new Socket("127.0.0.1", 30000);
+        Socket socket = new Socket("127.0.0.1", 20000);
         
         // 1.启动接受消息的线程
         new Thread(new ClientThread(socket)).start();
         
+        
+        /*
         // 2.主线程发送消息
         // 从控制台输入
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -33,7 +33,7 @@ public class Client {
         while((m=br.readLine()) != null) {
             pw.println(m);
         }
-        
+        */
         
         
     }

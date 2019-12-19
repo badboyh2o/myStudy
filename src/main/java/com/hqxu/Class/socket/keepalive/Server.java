@@ -1,4 +1,4 @@
-package com.hqxu.Class.socketFortest;
+package com.hqxu.Class.socket.keepalive;
 
 import java.io.IOException;
 import java.net.ServerSocket;
