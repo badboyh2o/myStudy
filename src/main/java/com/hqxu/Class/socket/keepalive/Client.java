@@ -1,10 +1,8 @@
 package com.hqxu.Class.socket.keepalive;
 
-import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+import java.io.InputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -37,5 +35,24 @@ public class Client {
         
         
     }
-    
+    /**
+     * 从输入流读取指定长度字节
+     * @param in
+     * @param lenth
+     * @return
+     * @throws IOException
+     */
+    public static byte[] readBytesFromStream(InputStream in, int lenth) throws IOException {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        // buffer
+        byte[] buffer = new byte[1024];
+        int read = 0;
+        while(lenth - read > 0) {
+            // 读取
+            read = in.read(buffer, 0, Math.min(1024, lenth-read)) +read;
+            // 写
+            out.write(buffer, 0, read);
+        }
+        return out.toByteArray();
+    }
 }
