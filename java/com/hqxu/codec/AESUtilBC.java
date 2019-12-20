@@ -35,6 +35,7 @@ public class AESUtilBC {
 	public final static String IV_STRING = "1234567812345678"; //16
 	public final static String DATA_ENCODE = "utf-8"; //
 	
+	// 设置provider
 	static{
 		if((Security.getProvider(BouncyCastleProvider.PROVIDER_NAME)) == null){
 			Security.addProvider(new BouncyCastleProvider());
