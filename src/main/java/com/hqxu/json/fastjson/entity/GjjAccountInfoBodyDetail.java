@@ -1,4 +1,4 @@
-package com.hqxu.jar.fastjson;
+package com.hqxu.json.fastjson.entity;
 
 public class GjjAccountInfoBodyDetail {
     private String summary;

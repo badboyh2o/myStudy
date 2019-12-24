@@ -1,4 +1,4 @@
-package com.hqxu.jar.fastjson;
+package com.hqxu.json.fastjson.entity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
