@@ -1,4 +1,4 @@
-package com.hqxu.testDate;
+package com.badboyh2o.jdk.date;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,7 +9,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
-public class T1 {
+public class SortDate {
 
     
     public static void main(String[] args) {
@@ -19,18 +19,20 @@ public class T1 {
         
         GjjAccountInfo g1 = new GjjAccountInfo();
         GjjAccountInfo g2 = new GjjAccountInfo();
+        GjjAccountInfo g3 = new GjjAccountInfo();
         g1.setTrDate("2013-09-10 15:45:23");
-        g1.setTrDate("2018-09-10 15:45:23");
-        g2.setTrDate("2017-04-03 12:45:12");
+        g2.setTrDate("2018-09-10 15:45:23");
+        g3.setTrDate("2017-04-03 12:45:12");
 
         List<GjjAccountInfo> list = new ArrayList<GjjAccountInfo>();
         list.add(g1);
         list.add(g2);
+        list.add(g3);
         Collections.sort(list,new Comparator<GjjAccountInfo>(){
             @Override public int compare(GjjAccountInfo o1,GjjAccountInfo o2){
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 try {
-                    return (int)(sdf.parse(o1.getTrDate()).getTime() - (sdf.parse(o2.getTrDate())).getTime());
+                    return sdf.parse(o2.getTrDate()).compareTo(sdf.parse(o1.getTrDate()));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 } 
