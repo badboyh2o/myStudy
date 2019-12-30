@@ -13,10 +13,12 @@ public class SortDate {
 
     
     public static void main(String[] args) {
-        
-        
-        
-        
+    	String str = new String(Character.toChars(0x10ffff));
+    	System.out.println(str.length());
+    	System.out.println(str.codePointCount(0,str.length()));
+    	System.out.println(str.codePointAt(1));
+    	
+    	
         GjjAccountInfo g1 = new GjjAccountInfo();
         GjjAccountInfo g2 = new GjjAccountInfo();
         GjjAccountInfo g3 = new GjjAccountInfo();
