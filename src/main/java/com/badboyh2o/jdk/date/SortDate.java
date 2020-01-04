@@ -3,16 +3,19 @@ package com.badboyh2o.jdk.date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 public class SortDate {
 
     
     public static void main(String[] args) {
+        
+        Date d = new Date();
+        System.out.println(d);
+        
     	String str = new String(Character.toChars(0x10ffff));
     	System.out.println(str.length());
     	System.out.println(str.codePointCount(0,str.length()));
