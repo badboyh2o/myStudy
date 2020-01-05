@@ -1,4 +1,4 @@
-package com.hqxu.Class.Calendar;
+package com.badboyh2o.jdk.date;
 
 import java.text.DateFormat;
 import java.text.MessageFormat;

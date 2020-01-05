@@ -1,4 +1,4 @@
-package com.hqxu.Class.Date;
+package com.badboyh2o.jdk.date;
 
 import java.text.MessageFormat;
 import java.text.NumberFormat;
