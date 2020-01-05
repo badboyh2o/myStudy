@@ -24,7 +24,6 @@ public interface MyInterface {
     public abstract String toString();
     public abstract Object clone() throws CloneNotSupportedException; //protected to public
     public abstract void finalize() throws Throwable; //protected to public
-    
     /**
      * 2.子类实现的接口的方法的返回类型，需要兼容和该子类的父类的方法的返回类型。
      * 即接口的方法返回类型必须和该子类的父类的方法的返回类型一致（或者是子类）
