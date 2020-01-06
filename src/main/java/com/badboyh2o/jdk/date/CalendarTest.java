@@ -11,7 +11,7 @@ public class CalendarTest {
         Calendar bir = Calendar.getInstance();
         bir.setTime(birthday);
         
-        if(cal.before(birthday)){
+        if(cal.before(bir)){
             throw new IllegalArgumentException("The birthday is before Now,It's unbelievable");
         }
         
