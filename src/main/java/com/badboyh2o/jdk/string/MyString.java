@@ -1,6 +1,8 @@
 package com.badboyh2o.jdk.string;
 
-public class MyString {
+import java.util.Arrays;
+
+public class MyString implements Cloneable {
 
 	private String name;
 	
@@ -24,11 +26,11 @@ public class MyString {
 		MyString o1 = new MyString();
 		MyString o2 = new MyString();
 		o1.setName("1");
-		o2.setName("1");
-		
 		
 		System.out.println(o1.equals(o2));
 	
-	
+		Class<?> clazz = MyString.class;
+		System.out.println(Arrays.toString(clazz.getInterfaces()));
+		
 	}
 }
