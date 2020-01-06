@@ -19,7 +19,8 @@ public class Test {
         testJsonStringToObjec();
         
         testObjToMap();
-        
+        double a = 0;
+        System.out.println(a == 0);
     }
 
     
