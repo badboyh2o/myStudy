@@ -1,6 +1,12 @@
 package com.hqxu.mode.EventObject;
 
-public class User {
+/**
+ * 实体类
+ * 
+ * @author xuhongqiang
+ *
+ */
+public class UserVO {
 
     private String username;
 
@@ -8,7 +14,7 @@ public class User {
 
     private String email;
 
-    public User(String username, String password, String email) {
+    public UserVO(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
