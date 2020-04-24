@@ -1,0 +1,58 @@
+
+
+	/**
+	 * Return a Collection of ApplicationListeners matching the given
+	 * event type. Non-matching listeners get excluded early.
+	 * @param event the event to be propagated. Allows for excluding
+	 * non-matching listeners early, based on cached matching information.
+	 * @return a Collection of ApplicationListeners
+	 * @see org.springframework.context.ApplicationListener
+	 */
+	protected Collection<ApplicationListener<?>> getApplicationListeners(ApplicationEvent event) {
+		Class<? extends ApplicationEvent> eventType = event.getClass();
+		Object source = event.getSource();
+		Class<?> sourceType = (source != null ? source.getClass() : null);
+		
+		// 获取事件相关的所有监听器
+		ListenerCacheKey cacheKey = new ListenerCacheKey(eventType, sourceType);
+		ListenerRetriever retriever = this.retrieverCache.get(cacheKey);
+		if (retriever != null) {
+			return retriever.getApplicationListeners();
+		}
+		
+		else {
+			retriever = new ListenerRetriever(true);
+			LinkedList<ApplicationListener<?>> allListeners = new LinkedList<ApplicationListener<?>>();
+			Set<ApplicationListener<?>> listeners;
+			Set<String> listenerBeans;
+			synchronized (this.defaultRetriever) {
+				listeners = new LinkedHashSet<ApplicationListener<?>>(this.defaultRetriever.applicationListeners);
+				listenerBeans = new LinkedHashSet<String>(this.defaultRetriever.applicationListenerBeans);
+			}
+			for (ApplicationListener<?> listener : listeners) {
+				if (supportsEvent(listener, eventType, sourceType)) {
+					retriever.applicationListeners.add(listener);
+					allListeners.add(listener);
+				}
+			}
+			if (!listenerBeans.isEmpty()) {
+				BeanFactory beanFactory = getBeanFactory();
+				for (String listenerBeanName : listenerBeans) {
+					try {
+						ApplicationListener<?> listener = beanFactory.getBean(listenerBeanName, ApplicationListener.class);
+						if (!allListeners.contains(listener) && supportsEvent(listener, eventType, sourceType)) {
+							retriever.applicationListenerBeans.add(listenerBeanName);
+							allListeners.add(listener);
+						}
+					}
+					catch (NoSuchBeanDefinitionException ex) {
+						// Singleton listener instance (without backing bean definition) disappeared -
+						// probably in the middle of the destruction phase
+					}
+				}
+			}
+			OrderComparator.sort(allListeners);
+			this.retrieverCache.put(cacheKey, retriever);
+			return allListeners;
+		}
+	}

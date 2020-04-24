@@ -14,7 +14,7 @@ public class UserRegistListener implements UserListener {
         if (event instanceof UserRegistEvent) {
             Object source = event.getSource();
             UserVO user = (UserVO) source;
-            System.out.println("send email to " + user.getEmail());
+            System.out.println("and then send email to " + user.getEmail());
         }
     }
 }
